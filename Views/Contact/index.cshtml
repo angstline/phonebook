@@ -1,0 +1,65 @@
+@model List<ContactModel>
+@{
+    ViewData["Title"] = "Listagem de Contatos";
+}
+
+<div class="text-center">
+
+    <div class="d-grid gap-2 d-md-flex justfy-content-md-start">
+        <a asp-controller="Contact" asp-action="Create" role="button" class="btn btn-primary">Novo Contato</a>
+    </div>
+
+    <br>
+
+    @* A estrutura a seguir serve para tratamento de erro nos templates html *@
+
+    @if (TempData["successMessage"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["successMessage"]
+        </div>
+    }
+
+    @if (TempData["errorMessage"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert" aria-label="Close">X</button>
+            @TempData["errorMessage"]
+        </div>
+    }
+
+    <br>
+
+    <h1 class="display-4">Listagem de Contatos</h1>
+
+    <table class="table" id="tablecontacts">
+        <thead>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">E-mail</th>
+                <th scope="col">Celular</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach(ContactModel contact in Model)
+                {
+                    <tr>
+                        <td>@contact.Name</td>
+                        <td>@contact.Email</td>
+                        <td>@contact.PhoneNumber</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a asp-controller="Contact" asp-action="Update" asp-route-id="@contact.Id" role="button" class="btn btn-primary">Editar</a>
+                                <a asp-controller="Contact" asp-action="ConfirmDelete" asp-route-id="@contact.Id" role="button" class="btn btn-danger">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

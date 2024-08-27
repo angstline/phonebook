@@ -1,0 +1,53 @@
+@model UserModel
+@{
+    ViewData["Title"] = "Atualização de Usuários";
+}
+
+<div class="text-center">
+
+    <h1 class="display-4">Atualização de Uusários</h1>
+
+</div>
+
+<form asp-controller="User" asp-action="Update" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="Photograph" class="form-label">Escolha sua imagem de perfil:</label>
+        <input asp-for="ProfilePicture" type="file" name="photograph" id="Photograph" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label for="FirstName" class="form-label">Primeiro Nome:</label>
+        <input type="text" asp-for="FirstName" name="firstName" class="form-control" id="FirstName" placeholder="FirstName">
+    </div>
+
+    <div class="mb-3">
+        <label for="MiddleName" class="form-label">Nome do Meio:</label>
+        <input type="text" asp-for="MiddleName" name="middleName" class="form-control" id="MiddleName" placeholder="MiddleName">
+    </div>
+
+    <div class="mb-3">
+        <label for="LastName" class="form-label">Último Nome:</label>
+        <input type="text" asp-for="LastName" name="lastName" class="form-control" id="LastName" placeholder="LastName">
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" asp-for="Email" name="email" class="form-control" id="email" placeholder="E-mail">
+    </div>
+
+    <div class="mb-3">
+        <label for="UserName" class="form-label">UserName:</label>
+        <input type="text" asp-for="UserName" name="userName" class="form-control" id="UserName" placeholder="UserName">
+    </div>
+    
+    <div class="mb-3">
+        <label for="Password" class="form-label">Senha:</label>
+        <input type="password" asp-for="Password" name="password" class="form-control" id="Password">
+    </div>
+
+    <div class="d-grid gap-2 d-md-block">
+        <button type="submit" class="btn btn-primary" type="button">Alterar</button>
+        <a asp-controller="User" asp-action="Index" role="button" class="btn btn-secondary">Voltar</a>
+    </div>
+
+</form>
